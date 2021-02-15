@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Result</h1>
+     <table style="width:100%">
+    <thead>
+        <tr>
+            <th style="text-align:left"> Name </th>
+            <th style="text-align:left"> Last Created Date </th>
+            <th style="text-align:left"> Last Updated Date </th>
+            <th style="text-align:left"> Status </th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr th:if="${allServices.empty}">
+            <td colspan="2"> No Services Available </td>
+        </tr>
+        <tr th:each="serv : ${allServices}">
+            <td><span th:text="${serv.name}"> Name </span></td>
+            <td><span th:text="${serv.lastCreated}"> Last Created Date </span></td>
+            <td><span th:text="${serv.lastUpdated}"> Last Updated Date </span></td>
+            <td><span th:text="${serv.status}"> Status </span></td>
+        </tr>
+    </tbody>
+</table>
+    <p th:text="'URL: ' + ${greeting.content}" />
+    <a href="/greeting">Submit another service</a>
+</body>
+</html>

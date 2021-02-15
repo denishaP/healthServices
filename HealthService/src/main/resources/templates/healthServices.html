@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Services</h1>
+    <form action="#" th:action="@{/healthServices}" th:object="${greeting}" method="post">
+    	 <table style="width:100%">
+    <thead>
+        <tr>
+            <th style="text-align:left"> Name </th>
+            <th style="text-align:left"> Last Created Date </th>
+            <th style="text-align:left"> Last Updated Date </th>
+            <th style="text-align:left"> Status </th>
+            <th style="text-align:left"> Delete </th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr th:if="${allServices.empty}">
+            <td colspan="2"> No Services Available </td>
+        </tr>
+        <tr th:each="serv : ${allServices}">
+            <td><span th:text="${serv.name}"> Name </span></td>
+            <td><span th:text="${serv.lastCreated}"> Last Created Date </span></td>
+            <td><span th:text="${serv.lastUpdated}"> Last Updated Date </span></td>
+            <td><span th:text="${serv.status}"> Status </span></td>
+            <td><a th:href="@{/delete/{id}(id=${#strings.replace(serv.name,'/','')})}">Delete</a></td>
+        </tr>
+    </tbody>
+</table>
+        <p>URL: <input type="text" th:field="*{content}" /></p>
+        <p><input type="submit" value="Add" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
